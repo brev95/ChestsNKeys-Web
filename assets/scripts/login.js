@@ -1,10 +1,4 @@
-import { Client } from "https://unpkg.com/archipelago.js/dist/archipelago.min.js";
-import {
-    connectedListener, disconnectedListener, itemsReceivedListener, locationsCheckedListener
-} from "./listeners.js";
-import { displayIfWin } from "./win.js";
-
-export var client;
+var client;
 
 $(document).ready(function () {
     /*

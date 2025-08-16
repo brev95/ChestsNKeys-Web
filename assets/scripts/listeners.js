@@ -2,19 +2,7 @@
 This file contains all of the event listeners that the Archipelago.js Client needs to function.
 */
 
-import { client } from "./login.js";
-import {
-    setupMainGameContainer,
-    setKeysEnabled,
-    displayLocationChecked,
-    ITEM_THAT_DOES_NOTHING_ID,
-    ITEM_ID_PREFIX,
-    LOCATION_ID_PREFIX,
-    displayChestUnlocked
-} from "./mainGame.js";
-import { displayIfWin } from "./win.js";
-
-export const connectedListener = (packet) => {
+const connectedListener = (packet) => {
     /*
     Find the total amount of chests in this slot.
     This is the total amount of locations (checked and missing) - 1, because the desk is the only non-chest location.
@@ -32,7 +20,7 @@ export const connectedListener = (packet) => {
     setupMainGameContainer(numChests);
 };
 
-export const disconnectedListener = (packet) => {
+const disconnectedListener = (packet) => {
     /*
     Someday, I'll change this code to try to reconnect every 10 seconds,
     but for now, I'll just send an alert because it's easier.
@@ -40,7 +28,7 @@ export const disconnectedListener = (packet) => {
     alert("You've been disconnected from the server! Reload the page and log in again in order to reconnect.");
 };
 
-export const itemsReceivedListener = (items, index) => {
+const itemsReceivedListener = (items, index) => {
     for (let item of items) {
         /*
         If the item isn't an Item That Does Nothing, it's a key. Unlock its corresponding chest.
@@ -55,7 +43,7 @@ export const itemsReceivedListener = (items, index) => {
     }
 };
 
-export const locationsCheckedListener = (locations) => {
+const locationsCheckedListener = (locations) => {
     // Update the appearance of every location that has been checked.
     for (var i = 0; i < locations.length; i++) {
         displayLocationChecked(locations[i]);

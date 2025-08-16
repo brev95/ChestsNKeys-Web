@@ -2,13 +2,10 @@
 This file contains the code directly relevant to the main game screen;
 i.e. everything after the login screen and before the win screen.
 */
-
-import { client } from "./login.js";
-
-export const LOCATION_ID_PREFIX = 420000;
-export const DESK_ID = LOCATION_ID_PREFIX;
-export const ITEM_ID_PREFIX = 69000;
-export const ITEM_THAT_DOES_NOTHING_ID = ITEM_ID_PREFIX + 420;
+const LOCATION_ID_PREFIX = 420000;
+const DESK_ID = LOCATION_ID_PREFIX;
+const ITEM_ID_PREFIX = 69000;
+const ITEM_THAT_DOES_NOTHING_ID = ITEM_ID_PREFIX + 420;
 
 // Whether keys are enabled in this slot. This is determined by reading the slot data from the server.
 var keysEnabled;
@@ -17,7 +14,7 @@ var keysEnabled;
 const NUMBER_HUES = 300;
 
 // Display the main game screen, complete with a desk and the given number of chests.
-export function setupMainGameContainer(numChests) {
+function setupMainGameContainer(numChests) {
     // Create and display the li tag representing the desk.
     var desk = document.createElement("li");
     $(desk).attr("id", "desk");
@@ -92,12 +89,12 @@ export function setupMainGameContainer(numChests) {
 }
 
 // This setter method allows keysEnabled to be accessed in other JS files.
-export function setKeysEnabled(newKeysEnabled) {
+function setKeysEnabled(newKeysEnabled) {
     keysEnabled = newKeysEnabled;
 }
 
 // Updates the appearance and functionality of the location with the given ID to show it has been checked.
-export function displayLocationChecked(locationId) {
+function displayLocationChecked(locationId) {
     if (locationId == DESK_ID) {
         // The desk li tag will contain an svg tag that is imported from an SVG file.
         $.get("./assets/images/No More Free Item.svg", fileContents => {
@@ -147,7 +144,7 @@ export function displayLocationChecked(locationId) {
 }
 
 // Updates the appearance and functionality of the chest with the given ID to show it has been unlocked.
-export function displayChestUnlocked(chestNumber) {
+function displayChestUnlocked(chestNumber) {
     var chestID = "#chest" + chestNumber;
 
     // The li tag will contain an svg tag that is imported from an SVG file.
